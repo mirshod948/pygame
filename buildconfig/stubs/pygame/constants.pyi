@@ -1,19 +1,10 @@
 """
-Script used to generate this file (if we change something in the constants in the future):
-import pygame.constants
-const = []
-for element in dir(pygame.constants):
-    constant_type = getattr(pygame.constants, element)
-    if not element.startswith("_"):
-        const.append("{}: {}\n".format(element, constant_type.__class__.__name__))
-with open("constants.pyi", "w") as f:
-    f.write("from typing import List\n\n\n")
-    for line in const:
-        f.write(str(line))
-    f.write("__all__: List[str]\n")
+buildconfig/stubs/gen_consts.py
+A helper script to generate constants.pyi typestub
 """
 
 from typing import List
+
 
 ACTIVEEVENT: int
 ANYFORMAT: int
@@ -72,6 +63,9 @@ CONTROLLERBUTTONUP: int
 CONTROLLERDEVICEADDED: int
 CONTROLLERDEVICEREMAPPED: int
 CONTROLLERDEVICEREMOVED: int
+CONTROLLERTOUCHPADDOWN: int
+CONTROLLERTOUCHPADMOTION: int
+CONTROLLERTOUCHPADUP: int
 CONTROLLER_AXIS_INVALID: int
 CONTROLLER_AXIS_LEFTX: int
 CONTROLLER_AXIS_LEFTY: int
@@ -191,6 +185,7 @@ KSCAN_7: int
 KSCAN_8: int
 KSCAN_9: int
 KSCAN_A: int
+KSCAN_AC_BACK: int
 KSCAN_APOSTROPHE: int
 KSCAN_B: int
 KSCAN_BACKSLASH: int
