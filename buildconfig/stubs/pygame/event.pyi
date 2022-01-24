@@ -1,7 +1,18 @@
-from typing import Any, Dict, List, Optional, SupportsInt, Tuple, Union, overload
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    SupportsInt,
+    Tuple,
+    Union,
+    overload,
+)
 
 class Event:
     type: int
+    dict: Dict[str, Any]
     __dict__: Dict[str, Any]
     __hash__: None  # type: ignore
     @overload
@@ -9,8 +20,11 @@ class Event:
     @overload
     def __init__(self, type: int, **attributes: Any) -> None: ...
     def __getattr__(self, name: str) -> Any: ...
+    def __setattr__(self, name: str, value: Any) -> None: ...
+    def __delattr__(self, name: str) -> None: ...
+    def __bool__(self) -> bool: ...
 
-_EventTypes = Union[SupportsInt, Tuple[SupportsInt, ...], List[SupportsInt]]
+_EventTypes = Union[SupportsInt, Tuple[SupportsInt, ...], Sequence[SupportsInt]]
 
 def pump() -> None: ...
 def get(

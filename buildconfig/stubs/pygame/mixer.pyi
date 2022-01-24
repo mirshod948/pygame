@@ -4,8 +4,8 @@ import numpy
 
 from pygame.event import Event
 
-from . import mixer_music as mixer_music
-from ._common import _FileArg
+from . import mixer_music as music
+from ._common import FileArg
 
 def init(
     frequency: int = 44100,
@@ -38,7 +38,7 @@ def get_sdl_mixer_version(linked: bool = True) -> Tuple[int, int, int]: ...
 
 class Sound:
     @overload
-    def __init__(self, file: _FileArg) -> None: ...
+    def __init__(self, file: FileArg) -> None: ...
     @overload
     def __init__(
         self, buffer: Any
@@ -74,6 +74,7 @@ class Channel:
     def pause(self) -> None: ...
     def unpause(self) -> None: ...
     def fadeout(self, time: int) -> None: ...
+    def queue(self, sound: Sound) -> None: ...
     @overload
     def set_volume(self, value: float) -> None: ...
     @overload
@@ -84,3 +85,29 @@ class Channel:
     def get_queue(self) -> Sound: ...
     def set_endevent(self, type: Union[int, Event] = 0) -> None: ...
     def get_endevent(self) -> int: ...
+
+SoundType = Sound
+ChannelType = Channel
+
+# Specify __all__ here because its needed to include mixer.music
+__all__ = [
+    "Channel",
+    "ChannelType",
+    "Sound",
+    "SoundType",
+    "fadeout",
+    "find_channel",
+    "get_busy",
+    "get_init",
+    "get_num_channels",
+    "get_sdl_mixer_version",
+    "init",
+    "music",
+    "pause",
+    "pre_init",
+    "quit",
+    "set_num_channels",
+    "set_reserved",
+    "stop",
+    "unpause",
+]
